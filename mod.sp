@@ -1,0 +1,3 @@
+mod "steampipe_stats" {
+}
+
