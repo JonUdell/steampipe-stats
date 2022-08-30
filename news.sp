@@ -6,7 +6,7 @@ dashboard "News" {
     service = "Steampipe Stats"
   }
                                                                                                                                               chart {
-    width = 4
+    width = 6
     sql = <<EOQ
       with months as (
         select 
