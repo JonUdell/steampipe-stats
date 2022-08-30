@@ -1,4 +1,9 @@
 dashboard "slack" {
+
+  tags = {
+    service = "Steampipe Stats"
+  }
+
   title = "Slack Membership"
   card {
     sql = <<EOQ

@@ -1,5 +1,9 @@
 dashboard "Stargazers" {
 
+  tags = {
+    service = "Steampipe Stats"
+  }
+
   container {
     title = "turbot/steampipe"
 
