@@ -1,5 +1,7 @@
 dashboard "Stargazers" {
 
+  title = "Stargazers"
+
   tags = {
     service = "Steampipe Stats"
   }
