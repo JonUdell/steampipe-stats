@@ -11,9 +11,9 @@ dashboard "Mods" {
     text {
       width = 6
       value = <<EOT
-[Mods](http://${local.host}:9194/steampipe_stats.dashboard.Mods)
+[Mods](${local.host}/steampipe_stats.dashboard.Mods)
 🞄
-[News](http://${local.host}:9194/steampipe_stats.dashboard.News)
+[News](${local.host}/steampipe_stats.dashboard.News)
 🞄
       EOT
     }

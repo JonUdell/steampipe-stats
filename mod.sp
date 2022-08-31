@@ -2,5 +2,5 @@ mod "steampipe_stats" {
 }
 
 locals {
-  host = "localhost"
+  host = "https://cloud.steampipe.io/org/acme/workspace/jon/dashboard"
 }
