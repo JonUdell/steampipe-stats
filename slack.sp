@@ -4,7 +4,21 @@ dashboard "Slack" {
     service = "Steampipe Stats"
   }
 
-  title = "Slack Members"
+  container {
+    text {
+      width = 2
+      value = <<EOT
+[Mods](${local.host}/steampipe_stats.dashboard.Mods)
+🞄
+[News](${local.host}/steampipe_stats.dashboard.News)
+🞄
+Slack
+🞄
+[Stargazers](${local.host}/steampipe_stats.dashboard.Stargazers)
+      EOT
+    }
+  }
+
   card {
     width = 2
     sql = <<EOQ

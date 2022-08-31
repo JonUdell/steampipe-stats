@@ -1,11 +1,38 @@
 dashboard "News" {
   
-  title = "News and Reviews"
-
   tags = {
     service = "Steampipe Stats"
   }
-                                                                                                                                              chart {
+
+  container {
+    text {
+      width = 2
+      value = <<EOT
+[Mods](${local.host}/steampipe_stats.dashboard.Mods)
+🞄
+News
+🞄
+[Slack](${local.host}/steampipe_stats.dashboard.Slack)
+🞄
+[Stargazers](${local.host}/steampipe_stats.dashboard.Stargazers)
+      EOT
+    }
+  }
+
+  
+  chart {
+    axes {
+      x {
+        title {
+          value = "months"
+        }
+      }
+      y {
+        title {
+          value = "articles"
+        }
+      }
+    }
     width = 6
     sql = <<EOQ
       with months as (

@@ -4,20 +4,19 @@ dashboard "Mods" {
     service = "Steampipe Stats"
   }
 
-  title = "Mod Stats"
-
   container {
-
     text {
-      width = 6
+      width = 2
       value = <<EOT
-[Mods](${local.host}/steampipe_stats.dashboard.Mods)
+Mods
 🞄
 [News](${local.host}/steampipe_stats.dashboard.News)
 🞄
+[Slack](${local.host}/steampipe_stats.dashboard.Slack)
+🞄
+[Stargazers](${local.host}/steampipe_stats.dashboard.Stargazers)
       EOT
     }
-
   }
 
   container {

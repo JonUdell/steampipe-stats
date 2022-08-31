@@ -1,10 +1,24 @@
 dashboard "Stargazers" {
 
-  title = "Stargazers"
-
   tags = {
     service = "Steampipe Stats"
   }
+
+  container {
+    text {
+      width = 2
+      value = <<EOT
+[Mods](${local.host}/steampipe_stats.dashboard.Mods)
+🞄
+[News](${local.host}/steampipe_stats.dashboard.News)
+🞄
+[Slack](${local.host}/steampipe_stats.dashboard.Slack)
+🞄
+Stargazers
+      EOT
+    }
+  }
+
 
   container {
     title = "turbot/steampipe"
