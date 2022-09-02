@@ -90,8 +90,79 @@ Slack
 
   }
 
+  container {
+
+    chart {
+      width = 3
+      type = "donut"
+      title = "Members by tz region"
+      sql = <<EOQ
+        with data as (
+          select
+            (regexp_match(tz, '^(.+)/'))[1] as region
+          from 
+            slack_user
+        )
+        select
+          region,
+          count(*)
+        from 
+          data
+        group by 
+          region 
+        order by
+          count desc    
+        EOQ
+    }
+
+    chart {
+      width = 3
+      type = "donut"
+      title = "Members by tz city"
+      sql = <<EOQ
+        with data as (
+          select
+            (regexp_match(tz, '^.+/(.+)'))[1] as city
+          from
+            slack_user
+        )
+        select
+          city,
+          count(*)
+        from 
+          data
+        group by 
+          city
+        order by
+          count desc    
+        EOQ
+    }
+
+/*
+    table {
+      width = 3
+      title = "Members by time zone"
+      type = "bar"
+      sql = <<EOQ
+        select 
+          tz, 
+          count(*) 
+        from 
+          slack_user 
+        group by 
+          tz 
+        order by
+        count desc    
+        EOQ
+      }
+  */
+
+    
+  }
+
  
 }
 
 
 
+  
