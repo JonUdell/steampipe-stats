@@ -8,6 +8,8 @@ dashboard "Traffic" {
     text {
       width = 4
       value = <<EOT
+[Hacker News](${local.host}/steampipe_stats.dashboard.HackerNews)
+🞄
 [Mods](${local.host}/steampipe_stats.dashboard.Mods)
 🞄
 [News](${local.host}/steampipe_stats.dashboard.News)
