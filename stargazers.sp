@@ -6,7 +6,7 @@ dashboard "Stargazers" {
 
   container {
     text {
-      width = 3
+      width = 4
       value = <<EOT
 [Mods](${local.host}/steampipe_stats.dashboard.Mods)
 🞄
@@ -15,6 +15,8 @@ dashboard "Stargazers" {
 [Slack](${local.host}/steampipe_stats.dashboard.Slack)
 🞄
 Stargazers
+🞄
+[Traffic](${local.host}/steampipe_stats.dashboard.Traffic)
 🞄
 [Twitter](${local.host}/steampipe_stats.dashboard.Twitter)
       EOT

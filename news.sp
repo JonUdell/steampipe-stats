@@ -6,7 +6,7 @@ dashboard "News" {
 
   container {
     text {
-      width = 3
+      width = 4
       value = <<EOT
 [Mods](${local.host}/steampipe_stats.dashboard.Mods)
 🞄
@@ -17,7 +17,9 @@ News
 [Stargazers](${local.host}/steampipe_stats.dashboard.Stargazers)
 🞄
 [Twitter](${local.host}/steampipe_stats.dashboard.Twitter)
-
+🞄
+[Traffic](${local.host}/steampipe_stats.dashboard.Traffic)
+🞄
       EOT
     }
   }

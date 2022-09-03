@@ -6,7 +6,7 @@ dashboard "Twitter" {
 
   container {
     text {
-      width = 3
+      width = 4
       value = <<EOT
 [Mods](${local.host}/steampipe_stats.dashboard.Mods)
 🞄
@@ -15,6 +15,8 @@ dashboard "Twitter" {
 [Slack](${local.host}/steampipe_stats.dashboard.Slack)
 🞄
 [Stargazers](${local.host}/steampipe_stats.dashboard.Stargazers)
+🞄
+[Traffic](${local.host}/steampipe_stats.dashboard.Traffic)
 🞄
 Twitter
       EOT
