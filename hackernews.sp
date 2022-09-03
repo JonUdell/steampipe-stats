@@ -6,7 +6,7 @@ dashboard "HackerNews" {
 
   container {
     text {
-      width = 4
+      width = 6
       value = <<EOT
 Hacker News
 🞄

@@ -6,7 +6,7 @@ dashboard "Slack" {
 
   container {
     text {
-      width = 4
+      width = 6
       value = <<EOT
 [Hacker News](${local.host}/steampipe_stats.dashboard.HackerNews)
 🞄
