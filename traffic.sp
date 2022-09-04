@@ -14,6 +14,8 @@ dashboard "Traffic" {
 🞄
 [News](${local.host}/steampipe_stats.dashboard.News)
 🞄
+[Repos](${local.host}/steampipe_stats.dashboard.Repos)
+🞄
 [Slack](${local.host}/steampipe_stats.dashboard.Slack)
 🞄
 [Stargazers](${local.host}/steampipe_stats.dashboard.Traffic)

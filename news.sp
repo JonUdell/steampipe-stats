@@ -14,6 +14,8 @@ dashboard "News" {
 🞄
 News
 🞄
+[Repos](${local.host}/steampipe_stats.dashboard.Repos)
+🞄
 [Slack](${local.host}/steampipe_stats.dashboard.Slack)
 🞄
 [Stargazers](${local.host}/steampipe_stats.dashboard.Stargazers)
@@ -21,7 +23,6 @@ News
 [Twitter](${local.host}/steampipe_stats.dashboard.Twitter)
 🞄
 [Traffic](${local.host}/steampipe_stats.dashboard.Traffic)
-🞄
       EOT
     }
   }

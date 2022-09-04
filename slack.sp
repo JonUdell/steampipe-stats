@@ -14,6 +14,8 @@ dashboard "Slack" {
 🞄
 [News](${local.host}/steampipe_stats.dashboard.News)
 🞄
+[Repos](${local.host}/steampipe_stats.dashboard.Repos)
+🞄
 Slack
 🞄
 [Stargazers](${local.host}/steampipe_stats.dashboard.Stargazers)
