@@ -73,7 +73,7 @@ Stargazers
             from 
           github_stargazer 
         where 
-          repository_full_name = "turbot/steampipe-mod-aws-insights"
+          repository_full_name = 'turbot/steampipe-mod-aws-insights'
       EOQ
     }
 
