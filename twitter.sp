@@ -27,6 +27,35 @@ Twitter
     }
   }
 
+  container {
+
+   card {
+     width = 2
+     sql = <<EOQ
+       select 
+        public_metrics ->> 'followers_count' as followers
+      from
+        twitter_user
+      where
+        username = 'steampipeio'
+     EOQ
+   }
+
+   card {
+     width = 2
+     sql = <<EOQ
+       select 
+        public_metrics ->> 'listed_count' as lists
+      from
+        twitter_user
+      where
+        username = 'steampipeio'
+     EOQ
+   }
+
+
+  }
+
   table {
     sql = <<EOQ
       with data as (
