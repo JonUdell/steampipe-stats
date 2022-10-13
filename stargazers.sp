@@ -27,6 +27,84 @@ Stargazers
     }
   }
 
+  container {
+
+    card {
+      width = 2
+      sql = <<EOQ
+        select 
+          count(*) as "steampipe"
+            from 
+          github_stargazer 
+        where 
+          repository_full_name = 'turbot/steampipe'
+      EOQ
+    }
+
+    card {
+      width = 2
+      sql = <<EOQ
+        select 
+          count(*) as "plugin-aws"
+            from 
+          github_stargazer 
+        where 
+          repository_full_name = 'turbot/steampipe-plugin-aws'
+      EOQ
+    }
+
+    card {
+      width = 2
+      sql = <<EOQ
+        select 
+          count(*) as "mod-aws-compliance"
+            from 
+          github_stargazer 
+        where 
+          repository_full_name = 'turbot/steampipe-mod-aws-compliance'
+      EOQ
+    }
+
+    card {
+      width = 2
+      sql = <<EOQ
+        select 
+          count(*) as "mod-aws-insights"
+            from 
+          github_stargazer 
+        where 
+          repository_full_name = 'turbot/steampipe-mod-aws-insights'
+      EOQ
+    }
+
+    card {
+      width = 2
+      sql = <<EOQ
+        select 
+          count(*) as "mod-aws-perimeter"
+            from 
+          github_stargazer 
+        where 
+          repository_full_name = 'turbot/steampipe-mod-aws-perimeter'
+      EOQ
+    }
+
+    card {
+      width = 2
+      sql = <<EOQ
+        select 
+          count(*) as "mod-aws-thrifty"
+            from 
+          github_stargazer 
+        where 
+          repository_full_name = 'turbot/steampipe-mod-aws-thrifty'
+      EOQ
+    }
+
+
+
+  }
+
 
   container {
     title = "turbot/steampipe"
