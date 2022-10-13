@@ -23,6 +23,8 @@ dashboard "Twitter" {
 [Traffic](${local.host}/steampipe_stats.dashboard.Traffic)
 🞄
 Twitter
+.
+[Vercel](${local.host}/steampipe_stats.dashboard.Vercel)
       EOT
     }
   }
