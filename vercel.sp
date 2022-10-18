@@ -43,15 +43,18 @@ Vercel
           to_char(to_timestamp((deployment ->> 'createdAt')::bigint / 1000), 'YYYY-MM-DD HH24:MM') as created_at,
           deployment -> 'creator' ->> 'githubLogin' as creator,
           'https://' || (deployment ->> 'url') as url,
-          deployment ->> 'readyState' as readyState
+          deployment ->> 'readyState' as "ready?",
+          deployment -> 'meta' ->> 'githubCommitMessage' as commit
         from
           deployments
         order by
           deployment ->> 'createdAt' desc
       EOQ
+      column "commit" {
+        wrap = "all"
+      }
     }
 
   }
-
 }
 
