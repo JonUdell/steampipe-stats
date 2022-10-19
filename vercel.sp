@@ -44,6 +44,7 @@ Vercel
           deployment -> 'creator' ->> 'githubLogin' as creator,
           'https://' || (deployment ->> 'url') as url,
           deployment ->> 'readyState' as "ready?",
+          deployment -> 'alias' ->> 0 as alias,
           deployment -> 'meta' ->> 'githubCommitMessage' as commit
         from
           deployments
