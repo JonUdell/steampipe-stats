@@ -18,7 +18,7 @@ dashboard "Traffic" {
 🞄
 [Slack](${local.host}/steampipe_stats.dashboard.Slack)
 🞄
-[Stargazers](${local.host}/steampipe_stats.dashboard.Traffic)
+[Stargazers](${local.host}/steampipe_stats.dashboard.Stargazers)
 🞄
 Traffic
 🞄
