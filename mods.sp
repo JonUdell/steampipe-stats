@@ -12,6 +12,8 @@ dashboard "Mods" {
 🞄
 [Hacker News](${local.host}/steampipe_stats.dashboard.HackerNews)
 🞄
+[Links](${local.host}/steampipe_stats.dashboard.Links)
+🞄
 Mods
 🞄
 [News](${local.host}/steampipe_stats.dashboard.News)
