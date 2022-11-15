@@ -95,7 +95,7 @@ query "links" {
     normalized_links as (
       select
         case 
-          when left(link, 1) = '/' then $1 || $2 
+          when left(link, 1) = '/' then $1 || $2 || link
           else link
         end as link,
         context
