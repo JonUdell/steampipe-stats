@@ -63,6 +63,10 @@ Links
       column "context" {
         wrap = "all"
       }
+      column "response_error" {
+        wrap = "all"
+      }
+
     }
 
   }
@@ -95,7 +99,7 @@ query "links" {
     normalized_links as (
       select
         case 
-          when left(link, 1) = '/' then $1 || $2 || link
+          when left(link, 1) = '/' then $1 || (regexp_match($2, '[^/]+'))[1] || link
           else link
         end as link,
         context
