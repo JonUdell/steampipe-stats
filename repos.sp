@@ -9,23 +9,25 @@
       text {
         width = 6
         value = <<EOT
-  [Hacker News](${local.host}/steampipe_stats.dashboard.HackerNews)
-  🞄
-  [Mods](${local.host}/steampipe_stats.dashboard.Mods)
-  🞄
-  [News](${local.host}/steampipe_stats.dashboard.News)
-  🞄
-  Repos
-  🞄
-  [Slack](${local.host}/steampipe_stats.dashboard.Slack)
-  🞄
-  [Stargazers](${local.host}/steampipe_stats.dashboard.Stargazers)
-  🞄
-  [Twitter](${local.host}/steampipe_stats.dashboard.Twitter)
-  🞄
-  [Traffic](${local.host}/steampipe_stats.dashboard.Traffic)
-  .
-  [Vercel](${local.host}/steampipe_stats.dashboard.Vercel)
+[Clickup](${local.host}/steampipe_stats.dashboard.Clickup)
+🞄
+[Hacker News](${local.host}/steampipe_stats.dashboard.HackerNews)
+🞄
+[Mods](${local.host}/steampipe_stats.dashboard.Mods)
+🞄
+[News](${local.host}/steampipe_stats.dashboard.News)
+🞄
+Repos
+🞄
+[Slack](${local.host}/steampipe_stats.dashboard.Slack)
+🞄
+[Stargazers](${local.host}/steampipe_stats.dashboard.Stargazers)
+🞄
+[Twitter](${local.host}/steampipe_stats.dashboard.Twitter)
+🞄
+[Traffic](${local.host}/steampipe_stats.dashboard.Traffic)
+.
+[Vercel](${local.host}/steampipe_stats.dashboard.Vercel)
       EOT
       }
     }

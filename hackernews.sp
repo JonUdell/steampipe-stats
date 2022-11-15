@@ -8,6 +8,8 @@ dashboard "HackerNews" {
     text {
       width = 6
       value = <<EOT
+[Clickup](${local.host}/steampipe_stats.dashboard.Clickup)
+🞄
 Hacker News
 🞄
 [Mods](${local.host}/steampipe_stats.dashboard.Mods)
