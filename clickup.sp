@@ -42,6 +42,12 @@ Clickup
       column "preview_url" {
         wrap = "all"
       }
+      column "pr_url" {
+        wrap = "all"
+      }
+      column "url" {
+        wrap = "all"
+      }
     }
 
   }
@@ -80,6 +86,15 @@ query "clickup_tasks" {
         custom_fields
       where
         custom_field ->> 'name' = 'Vercel Preview URL'
+    ),
+    pr_urls as (
+      select 
+        task_id,
+        custom_field ->> 'value' as pr_url
+      from
+        custom_fields
+      where
+        custom_field ->> 'name' = 'GitHub Pull Request'
     )
     select
       t.task ->> 'name' as name,
@@ -90,13 +105,18 @@ query "clickup_tasks" {
       to_char( to_timestamp( (t.task ->> 'date_created')::numeric / 1000 ), 'YYYY-MM-DD' ) as date_created,
       to_char( to_timestamp( (t.task ->> 'date_updated')::numeric / 1000 ),  'YYYY-MM-DD') as date_updated,
       t.task ->> 'url' as url,
-      p.preview_url
+      p.preview_url,
+      pr.pr_url
     from
       tasks t
     join
       preview_urls p 
     on
       t.task ->> 'id' = p.task_id
+    join
+      pr_urls pr
+    on
+      t.task ->> 'id' = pr.task_id
     order by
       task ->> 'date_updated' desc  
 
