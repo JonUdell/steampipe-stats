@@ -36,6 +36,12 @@ Clickup
   container {
     table {
       query = query.clickup_tasks
+      column "name" {
+        wrap = "all"
+      }
+      column "preview_url" {
+        wrap = "all"
+      }
     }
 
   }
@@ -58,20 +64,42 @@ query "clickup_tasks" {
         jsonb_array_elements( response_body -> 'tasks' ) as task
       from 
         response_body
+    ),
+    custom_fields as (
+      select
+        task ->> 'id' as task_id,
+        jsonb_array_elements( task -> 'custom_fields' ) as custom_field
+    from 
+      tasks
+    ),
+    preview_urls as (
+      select 
+        task_id,
+        custom_field ->> 'value' as preview_url
+      from
+        custom_fields
+      where
+        custom_field ->> 'name' = 'Vercel Preview URL'
     )
     select
-      task ->> 'name' as name,
-      task -> 'status' ->> 'status' as status,
-      task -> 'list' ->> 'name' as list_name,
-      task -> 'creator' ->> 'username' as creator,
-      task -> 'assignees' -> 0 ->> 'username' as assignee,
-      to_char( to_timestamp( (task ->> 'date_created')::numeric / 1000 ), 'YYYY-MM-DD' ) as date_created,
-      to_char( to_timestamp( (task ->> 'date_updated')::numeric / 1000 ),  'YYYY-MM-DD') as date_updated,
-      task ->> 'url' as url
+      t.task ->> 'name' as name,
+      t.task -> 'status' ->> 'status' as status,
+      t.task -> 'list' ->> 'name' as list_name,
+      t.task -> 'creator' ->> 'username' as creator,
+      t.task -> 'assignees' -> 0 ->> 'username' as assignee,
+      to_char( to_timestamp( (t.task ->> 'date_created')::numeric / 1000 ), 'YYYY-MM-DD' ) as date_created,
+      to_char( to_timestamp( (t.task ->> 'date_updated')::numeric / 1000 ),  'YYYY-MM-DD') as date_updated,
+      t.task ->> 'url' as url,
+      p.preview_url
     from
-      tasks
+      tasks t
+    join
+      preview_urls p 
+    on
+      t.task ->> 'id' = p.task_id
     order by
       task ->> 'date_updated' desc  
+
 
       
       
