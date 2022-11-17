@@ -62,10 +62,11 @@ query "clickup_tasks" {
     select
       task ->> 'name' as name,
       task -> 'status' ->> 'status' as status,
+      task -> 'list' ->> 'name' as list_name,
       task -> 'creator' ->> 'username' as creator,
       task -> 'assignees' -> 0 ->> 'username' as assignee,
       to_char( to_timestamp( (task ->> 'date_created')::numeric / 1000 ), 'YYYY-MM-DD' ) as date_created,
-      to_char( to_timestamp( (task ->> 'date_closed')::numeric / 1000 ),  'YYYY-MM-DD') as date_closed,
+      to_char( to_timestamp( (task ->> 'date_updated')::numeric / 1000 ),  'YYYY-MM-DD') as date_updated,
       task ->> 'url' as url
     from
       tasks
