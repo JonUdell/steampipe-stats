@@ -37,27 +37,20 @@ Vercel
 
     table {
       sql = <<EOQ
-        with deployments as (
-          select 
-            jsonb_array_elements(latest_deployments) as deployment
-          from
-            vercel_project
-        )
-        select
-          to_char(to_timestamp((deployment ->> 'createdAt')::bigint / 1000), 'YYYY-MM-DD HH24:MM') as created_at,
-          deployment -> 'creator' ->> 'githubLogin' as creator,
-          'https://' || (deployment ->> 'url') as url,
-          deployment ->> 'readyState' as "ready?",
-          deployment -> 'alias' ->> 0 as alias,
-          deployment -> 'meta' ->> 'githubCommitMessage' as commit
-        from
-          deployments
+        select 
+          to_char(created_at, 'MM-DD HH24:mm') as created,
+          state,
+          'https://' || url as url,
+          creator->>'username' as creator, 
+          meta->>'githubCommitRef' as commit_ref, 
+          meta->>'githubCommitMessage' as commit_msg 
+        from 
+          vercel_deployment
+        where
+          created_at > now() - interval '2 weeks'
         order by
-          deployment ->> 'createdAt' desc
+          created_at desc      
       EOQ
-      column "commit" {
-        wrap = "all"
-      }
     }
 
   }
