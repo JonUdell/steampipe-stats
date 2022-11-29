@@ -151,27 +151,44 @@ Slack
           count desc    
         EOQ
     }
+    
+  }
 
-/*
+  container {
+
     table {
-      width = 3
-      title = "Members by time zone"
-      type = "bar"
+      width = 6
+      title = "members by email domain: summary"
       sql = <<EOQ
         select 
-          tz, 
-          count(*) 
-        from 
-          slack_user 
-        group by 
-          tz 
+          (regexp_match(email, '@(.+)'))[1] as domain,
+          count(*)
+        from
+          slack_user
+        group by
+          domain
         order by
-        count desc    
+          count desc
         EOQ
       }
-  */
 
-    
+    table {
+      width = 6
+      title = "members by email domain: detail"
+      sql = <<EOQ
+        select 
+          (regexp_match(email, '@(.+)'))[1] as domain,
+          email
+        from
+          slack_user
+        order by 
+          domain
+        EOQ
+      }
+
+
+
+
   }
 
  
