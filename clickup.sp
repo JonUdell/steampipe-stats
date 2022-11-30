@@ -6,7 +6,7 @@ dashboard "Clickup" {
 
   container {
     text {
-      width = 6
+      width = 8
       value = <<EOT
 Clickup
 🞄

@@ -6,7 +6,7 @@ dashboard "Traffic" {
 
   container {
     text {
-      width = 6
+      width = 8
       value = <<EOT
 [Clickup](${local.host}/steampipe_stats.dashboard.Clickup)
 🞄
@@ -32,6 +32,17 @@ Traffic
       EOT
     }
   }
+
+container {
+  width = 6
+  text {
+    value = <<EOT
+This dashboard reports recent GitHub pageviews for plugins and mods. The live version takes a while to load, and seems to require multiple refreshes to fully load. While waiting you can view snapshots. 
+
+[11/29/2022](https://cloud.steampipe.io/org/acme/workspace/jon/snapshot/snap_ce39eqkehsemu8drueb0_2gky12ktr9r9kinf69twhasg)
+	EOT
+  }
+}
 
 container {
 	title = "plugins"
@@ -2228,4 +2239,5 @@ container {
 }
 
 }
+
 	  

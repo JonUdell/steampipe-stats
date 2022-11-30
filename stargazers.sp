@@ -6,7 +6,7 @@ dashboard "Stargazers" {
 
   container {
     text {
-      width = 6
+      width = 8
       value = <<EOT
 [Clickup](${local.host}/steampipe_stats.dashboard.Clickup)
 🞄
@@ -30,6 +30,18 @@ Stargazers
       EOT
     }
   }
+
+container {
+  width = 6
+  text {
+    value = <<EOT
+This dashboard reports stargazers by month for selected repos. The live version takes a while to load, and seems to require multiple refreshes to fully load. While waiting you can view snapshots. 
+
+[11/29/2022](https://cloud.steampipe.io/org/acme/workspace/jon/snapshot/snap_ce39rdsehsemu8drufkg_1usouc9m5ah8x4ubkmsyx8sa9)
+	EOT
+  }
+}
+
 
   container {
 

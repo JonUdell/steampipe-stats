@@ -6,7 +6,7 @@ dashboard "Slack" {
 
   container {
     text {
-      width = 6
+      width = 8
       value = <<EOT
 [Clickup](${local.host}/steampipe_stats.dashboard.Clickup)
 🞄
