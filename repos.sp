@@ -19,6 +19,8 @@
 🞄
 [News](${local.host}/steampipe_stats.dashboard.News)
 🞄
+[Reddit](${local.host}/steampipe_stats.dashboard.Reddit)
+🞄
 Repos
 🞄
 [Slack](${local.host}/steampipe_stats.dashboard.Slack)
