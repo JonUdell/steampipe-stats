@@ -10,7 +10,9 @@ dashboard "Clickup" {
       value = <<EOT
 Clickup
 🞄
-[Hacker News](${local.host}/steampipe_stats.dashboard.HackerNews)
+[Contributors](${local.host}/steampipe_stats.dashboard.Contributors)
+🞄
+[DetailsContributor](${local.host}/steampipe_stats.dashboard.DetailsContributor)
 🞄
 [Links](${local.host}/steampipe_stats.dashboard.Links)
 🞄

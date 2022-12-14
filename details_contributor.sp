@@ -1,10 +1,11 @@
-dashboard "Vercel" {
+dashboard "DetailsContributor" {
 
   tags = {
     service = "Steampipe Stats"
   }
 
   container {
+    
     text {
       width = 8
       value = <<EOT
@@ -12,7 +13,7 @@ dashboard "Vercel" {
 🞄
 [Contributors](${local.host}/steampipe_stats.dashboard.Contributors)
 🞄
-[DetailsContributor](${local.host}/steampipe_stats.dashboard.DetailsContributor)
+DetailsContributor
 🞄
 [Links](${local.host}/steampipe_stats.dashboard.Links)
 🞄
@@ -26,37 +27,44 @@ dashboard "Vercel" {
 🞄
 [Slack](${local.host}/steampipe_stats.dashboard.Slack)
 🞄
-[Stargazers](${local.host}/steampipe_stats.dashboard.Stargazers)
+[Stargazers](${local.host}/steampipe_stats.dashboard.Slack)
 🞄
 [Traffic](${local.host}/steampipe_stats.dashboard.Traffic)
 🞄
 [Twitter](${local.host}/steampipe_stats.dashboard.Twitter)
 .
-Vercel
+[Vercel](${local.host}/steampipe_stats.dashboard.Vercel)
       EOT
     }
+
   }
 
   container {
 
+    input "person" {
+      width = 2
+      type = "text"
+      }
+
     table {
-      sql = <<EOQ
-        select 
-          to_char(created_at, 'MM-DD HH24:mm') as created,
-          state,
-          'https://' || url as url,
-          creator->>'username' as creator, 
-          meta->>'githubCommitRef' as commit_ref, 
-          meta->>'githubCommitMessage' as commit_msg 
-        from 
-          vercel_deployment
+      args = [ self.input.person.value ]
+      title = "contributor detail"
+        sql = <<EOQ
+        select
+          *
+        from
+          members_join_commits
         where
-          created_at > now() - interval '2 weeks'
-        order by
-          created_at desc      
+          author_login = $1
       EOQ
+      column "html_url" {
+        wrap = "all"
+      }
+      column "message" {
+        wrap = "all"
+      }
     }
 
   }
-}
 
+}
