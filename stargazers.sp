@@ -41,6 +41,7 @@ container {
     value = <<EOT
 This dashboard reports stargazers by month for selected repos. The live version takes a while to load, and seems to require multiple refreshes to fully load. While waiting you can view snapshots. 
 
+[12/19/2022](https://cloud.steampipe.io/org/acme/workspace/jon/snapshot/snap_ceglke6baogoid88oibg_1hmdm79ytxm8t464ty7as47zo)
 [11/29/2022](https://cloud.steampipe.io/org/acme/workspace/jon/snapshot/snap_ce39rdsehsemu8drufkg_1usouc9m5ah8x4ubkmsyx8sa9)
 	EOT
   }
