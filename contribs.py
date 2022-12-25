@@ -92,6 +92,17 @@ def drop_commit_tables_for_all_repos(org):
     print(sql)
     sql_write(sql)
 
+def drop_members_join_commits():
+  sql = f"drop table members_join_commits"
+  print(sql)
+  sql_write(sql)
+
+def drop_turbot_external_commits():
+  sql = f"drop table turbot_external_commits"
+  print(sql)
+  sql_write(sql)
+
+
 def combine_tables(org):
   repos = get_repos()
   statements = []
@@ -190,6 +201,10 @@ exclude = """
   'subham9418',
   'visiit'
 """
+
+drop_turbot_external_commits()
+
+drop_members_join_commits()
 
 drop_commit_tables_for_all_repos(org)
 
