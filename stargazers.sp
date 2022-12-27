@@ -29,8 +29,6 @@ dashboard "Stargazers" {
 Stargazers
 🞄
 [Traffic](${local.host}/steampipe_stats.dashboard.Traffic)
-🞄
-[Twitter](${local.host}/steampipe_stats.dashboard.Twitter)
 .
 [Vercel](${local.host}/steampipe_stats.dashboard.Vercel)
       EOT

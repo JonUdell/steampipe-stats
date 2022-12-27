@@ -26,13 +26,11 @@ Mentions
 🞄
 [Repos](${local.host}/steampipe_stats.dashboard.Repos)
 🞄
-Slack
+[Slack](${local.host}/steampipe_stats.dashboard.Slack)
 🞄
 [Stargazers](${local.host}/steampipe_stats.dashboard.Stargazers)
 🞄
 [Traffic](${local.host}/steampipe_stats.dashboard.Traffic)
-🞄
-[Twitter](${local.host}/steampipe_stats.dashboard.Twitter)
 .
 [Vercel](${local.host}/steampipe_stats.dashboard.Vercel)
       EOT
@@ -46,7 +44,7 @@ Slack
       width = 6
       sql = <<EOQ
         select 
-          to_char(created_utc, 'YYYY-MM-DD') as created_at,
+          to_char(created_utc, 'MM-DD') as day,
           subreddit,
           author,
           score,
@@ -68,19 +66,33 @@ Slack
       width = 6
       // https://twitter.com/spdegabrielle/status/1607554553330733059
       sql = <<EOQ
+        with data as (
+          select
+            to_char(created_at, 'MM-DD') as day,
+            id,
+            author->>'username' as username,
+            author->'public_metrics'->>'followers_count' as followers,
+            text as tweet
+          from
+            twitter_search_recent
+          where
+            query = 'steampipe'
+            and author ->> 'username' != 'steampipeio'
+            and text ~* 'steampipe'
+          order by created_at desc
+          limit 15
+        )
         select
-          'https://www.twitter.com/' || (author->>'username') || '/status/' || id as url,
-          to_char(created_at, 'YYYY-MM-DD') as created_at,
-          (author ->> 'username') || ' ' || (author -> 'public_metrics' ->> 'followers_count') || ' _' || text || '_' as tweet
+          day,
+          username || '/status/' || id as link,
+          followers,
+          tweet
         from
-          twitter_search_recent
-        where
-          query = 'steampipe'
-          and author ->> 'username' != 'steampipeio'
-          and text ~* 'steampipe'
-        order by created_at desc
-        limit 15
+          data
       EOQ
+      column "link" {
+        href = "https://twitter.com/{{.'link'}}"
+      }
       column "author" {
         wrap = "all"
       }

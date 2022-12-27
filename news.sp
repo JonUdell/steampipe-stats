@@ -30,8 +30,6 @@ News
 🞄
 [Stargazers](${local.host}/steampipe_stats.dashboard.Stargazers)
 🞄
-[Twitter](${local.host}/steampipe_stats.dashboard.Twitter)
-🞄
 [Traffic](${local.host}/steampipe_stats.dashboard.Traffic)
 .
 [Vercel](${local.host}/steampipe_stats.dashboard.Vercel)
