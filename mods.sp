@@ -16,6 +16,8 @@ dashboard "Mods" {
 🞄
 [Links](${local.host}/steampipe_stats.dashboard.Links)
 🞄
+[Mentions](${local.host}/steampipe_stats.dashboard.Mentions)
+🞄
 Mods
 🞄
 [News](${local.host}/steampipe_stats.dashboard.News)

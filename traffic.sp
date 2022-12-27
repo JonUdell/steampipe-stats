@@ -16,6 +16,8 @@ dashboard "Traffic" {
 🞄
 [Links](${local.host}/steampipe_stats.dashboard.Links)
 🞄
+[Mentions](${local.host}/steampipe_stats.dashboard.Mentions)
+🞄
 [Mods](${local.host}/steampipe_stats.dashboard.Mods)
 🞄
 [News](${local.host}/steampipe_stats.dashboard.News)
