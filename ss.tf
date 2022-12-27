@@ -10,5 +10,5 @@ resource "steampipecloud_workspace_mod" "steampipe_stats" {
   organization = "acme" 
   workspace_handle = "jon"
   path = "github.com/judell/steampipe-stats"
-  constraint = "v0.41"
+  constraint = "v0.42"
 }
