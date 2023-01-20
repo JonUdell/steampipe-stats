@@ -29,7 +29,7 @@ DetailsContributor
 🞄
 [Slack](${local.host}/steampipe_stats.dashboard.Slack)
 🞄
-[Stargazers](${local.host}/steampipe_stats.dashboard.Slack)
+[Stargazers](${local.host}/steampipe_stats.dashboard.Stargazers)
 🞄
 [Traffic](${local.host}/steampipe_stats.dashboard.Traffic)
 🞄
