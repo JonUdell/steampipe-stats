@@ -8,35 +8,17 @@ dashboard "Contributors" {
     
     text {
       width = 8
-      value = <<EOT
-[Clickup](${local.host}/steampipe_stats.dashboard.Clickup)
-🞄
-Contributors
-🞄
-[DetailsContributor](${local.host}/steampipe_stats.dashboard.DetailsContributor)
-🞄
-[Links](${local.host}/steampipe_stats.dashboard.Links)
-🞄
-[Mentions](${local.host}/steampipe_stats.dashboard.Mentions)
-🞄
-[Mods](${local.host}/steampipe_stats.dashboard.Mods)
-🞄
-[News](${local.host}/steampipe_stats.dashboard.News)
-🞄
-[Reddit](${local.host}/steampipe_stats.dashboard.Reddit)
-🞄
-[Repos](${local.host}/steampipe_stats.dashboard.Repos)
-🞄
-[Slack](${local.host}/steampipe_stats.dashboard.Slack)
-🞄
-[Stargazers](${local.host}/steampipe_stats.dashboard.Stargazers)
-🞄
-[Traffic](${local.host}/steampipe_stats.dashboard.Traffic)
-🞄
-[Vercel](${local.host}/steampipe_stats.dashboard.Vercel)
-      EOT
+      value = replace(
+        replace(
+          "${local.menu}",
+          "__HOST__",
+          "${local.host}"
+        ),
+        "[Contributors](${local.host}/steampipe_stats.dashboard.Contributors)",
+        "Contributors"
+      )
     }
-  }
+  }      
 
   container {
 
