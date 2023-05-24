@@ -15,7 +15,7 @@ locals {
 🞄
 [Mentions](__HOST__/steampipe_stats.dashboard.Mentions)
 🞄
-Mods
+[Mods](__HOST__/steampipe_stats.dashboard.Mods)
 🞄
 [News](__HOST__/steampipe_stats.dashboard.News)
 🞄
