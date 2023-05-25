@@ -22,10 +22,25 @@ dashboard "SlackDay" {
   }
 
   container {
-    title = "day (YYYY-MM-DD)"
+    title = "day"
     width = 2
     input "day" {
-      type = "text"
+      type = "combo"
+      sql = <<EOQ
+      with data as (
+        select
+          to_char(now() - interval '1 day' * row_num, 'YYYY-MM-DD') as day
+        from
+          generate_series(0,30) as row_num
+      )
+      select
+        day as label,
+        day as value
+      from
+        data
+      order by
+        day desc
+      EOQ
     }
   } 
 
