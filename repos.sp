@@ -14,8 +14,8 @@
             "__HOST__",
             "${local.host}"
           ),
-          "[Reddit](${local.host}/steampipe_stats.dashboard.Reddit)",
-          "Reddit"
+          "[Repos](${local.host}/steampipe_stats.dashboard.Repos)",
+          "Repos"
         )
       }
 
@@ -26,9 +26,9 @@
       title = "recent updates to community repos"
       sql = <<EOQ
         select
-          full_name as "Repo",
-          stargazers_count as "Stars",
-          html_url as "URL",
+          name as "Repo",
+          stargazer_count as "Stars",
+          url as "URL",
           to_char(pushed_at, 'DD-Mon-YYYY') as "Last Pushed"
         from
           github_search_repository
