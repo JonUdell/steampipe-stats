@@ -27,6 +27,7 @@ dashboard "Vercel" {
 
     table {
       sql = <<EOQ
+        with data as (
         select 
           to_char(created_at, 'MM-DD HH24:mm') as created,
           state,
@@ -38,8 +39,14 @@ dashboard "Vercel" {
           vercel_deployment
         where
           created_at > now() - interval '2 weeks'
+        limit 100
+        )
+        select
+          *
+        from
+          data
         order by
-          created_at desc      
+          created desc
       EOQ
     }
 
