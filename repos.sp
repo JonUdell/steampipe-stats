@@ -57,14 +57,14 @@
           title = "community repo"
           sql = <<EOQ
             select
-              full_name as label,
-              full_name as value
+              name_with_owner as label,
+              name_with_owner as value
             from
               github_search_repository
             where
               query = 'steampipe in:name'
             order by
-              full_name
+              name_with_owner
           EOQ
         }
 
@@ -91,44 +91,50 @@
             EOQ    
         }
       }
-    
+
       table {
         args = [ self.input.repo, self.input.since ]
         sql = <<EOQ
           with repos as (
-            select
-              full_name,
-              'committer-date:>' || $2 || ' repo:' || full_name as query
-            from
-              github_search_repository
-            where
-              query = $1 || ' in:name'
-            order by
-              full_name
+              select
+                --$1 as dollar_1,
+                --$2 as dollar_2,
+                g.name_with_owner as repo_name,  -- Specify an alias for the name column
+                'author-date:>' || $2|| ' repo:' || g.name_with_owner as commit_query,
+                g.*  -- Explicitly reference only columns from g to prevent unintentional overlaps
+              from
+                github_search_repository g
+              where
+                query = $1 || ' in:name ' 
+              limit 10
           )
           select
-            full_name,
+              --r.dollar_1,
+              --r.dollar_2,
+              r.repo_name,  -- Use the specified alias
+              c.commit -> 'author' ->> 'name' as author,
             substring(c.commit -> 'committer' ->> 'date' from 1 for 10) as date,
             c.commit ->> 'message' as message
           from
-            repos r
+              repos r
           join
-            github_search_commit c 
+              github_search_commit c 
           on
-            r.full_name = c.repository_full_name
+              r.repo_name = c.repository_full_name
           where
-            c.query =  r.query
+              c.query = r.commit_query  -- Use the constructed query for commits
           order by
-            full_name, date desc
+            date desc      
         EOQ
-        column "full_name" {
-          href = "https://github.com/{{.'full_name'}}"
+        column "repo_name" {
+          href = "https://github.com/{{.'repo_name'}}"
         }
         column "message" {
           wrap = "all"
-        }
+        }        
       }
 
     }
-  
+    
+ 
   }
