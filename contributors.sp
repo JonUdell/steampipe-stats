@@ -45,7 +45,7 @@ dashboard "Contributors" {
 
     table {
       title = "turbot external committers by count"
-      width = 4
+      width = 6
       sql = <<EOQ
         with data as (
           select 
@@ -72,21 +72,41 @@ dashboard "Contributors" {
 
     }
 
-    table {
-      width = 8
-      title = "turbot external commits by recency"
+    container {
+      width = 6
+
+      chart {
         sql = <<EOQ
-        select
-          *
-        from
-          members_join_commits
-      EOQ
-      column "html_url" {
-        wrap = "all"
+          select
+              date_trunc('month', author_date::date) as month,
+              count(*)
+          from
+              members_join_commits
+          group by
+              month
+          order by
+              month;
+        EOQ
       }
-      column "message" {
-        wrap = "all"
+
+      table {
+        title = "turbot external commits by recency"
+          sql = <<EOQ
+          select
+            *
+          from
+            members_join_commits
+          order by
+            author_date desc
+        EOQ
+        column "html_url" {
+          wrap = "all"
+        }
+        column "message" {
+          wrap = "all"
+        }
       }
+
     }
 
   }

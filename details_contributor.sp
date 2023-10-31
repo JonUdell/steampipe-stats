@@ -28,23 +28,46 @@ dashboard "DetailsContributor" {
       type = "text"
       }
 
-    table {
-      args = [ self.input.person.value ]
-      title = "contributor detail"
+    container {
+
+      table {
+        width = 8
+        args = [ self.input.person.value ]
+        title = "contributor detail"
+          sql = <<EOQ
+          select
+            *
+          from
+            members_join_commits
+          where
+            author_login = $1
+        EOQ
+        column "html_url" {
+          wrap = "all"
+        }
+        column "message" {
+          wrap = "all"
+        }
+      }
+
+      chart {
+        width = 4
+        args = [ self.input.person.value ]
         sql = <<EOQ
-        select
-          *
-        from
-          members_join_commits
-        where
-          author_login = $1
-      EOQ
-      column "html_url" {
-        wrap = "all"
+          select
+              date_trunc('month', author_date::date) as month,
+              count(*)
+          from
+              members_join_commits
+          where
+            author_login = $1
+          group by
+              month
+          order by
+              month;
+        EOQ
       }
-      column "message" {
-        wrap = "all"
-      }
+
     }
 
   }
