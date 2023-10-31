@@ -30,8 +30,25 @@ dashboard "DetailsContributor" {
 
     container {
 
+      chart {
+        args = [ self.input.person.value ]
+        sql = <<EOQ
+          select
+              date_trunc('month', author_date::date) as month,
+              count(*)
+          from
+              members_join_commits
+          where
+            author_login = $1
+          group by
+              month
+          order by
+              month;
+        EOQ
+      }
+
+
       table {
-        width = 8
         args = [ self.input.person.value ]
         title = "contributor detail"
           sql = <<EOQ
@@ -48,24 +65,6 @@ dashboard "DetailsContributor" {
         column "message" {
           wrap = "all"
         }
-      }
-
-      chart {
-        width = 4
-        args = [ self.input.person.value ]
-        sql = <<EOQ
-          select
-              date_trunc('month', author_date::date) as month,
-              count(*)
-          from
-              members_join_commits
-          where
-            author_login = $1
-          group by
-              month
-          order by
-              month;
-        EOQ
       }
 
     }
