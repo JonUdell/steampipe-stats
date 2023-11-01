@@ -44,7 +44,7 @@ dashboard "Contributors" {
   container {
 
     table {
-      title = "turbot external committers by count"
+      title = "turbot external committers by count (v0.58)"
       width = 6
       sql = <<EOQ
         with data as (
