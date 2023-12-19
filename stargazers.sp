@@ -34,7 +34,19 @@ dashboard "Stargazers" {
 
     chart {
       width = 4
-      title = "steampipe-pugin-aws"
+      title = "flowpipe"
+      type = "line"
+      sql = <<EOQ
+        select month, sum from github_stargazers_cumulative where repo = 'flowpipe' order by month
+      EOQ
+    }
+  }
+
+  container {
+
+    chart {
+      width = 4
+      title = "steampipe-plugin-aws"
       type = "line"
       sql = <<EOQ
         select month, sum from github_stargazers_cumulative where repo = 'steampipe_plugin_aws' order by month
