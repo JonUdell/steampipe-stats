@@ -4,7 +4,7 @@ mod "steampipe_stats" {
 }
 
 locals {
-  host = "https://pipes.turbot.com/org/turbot-ops/workspace/stats"
+  host = "https://pipes.turbot.com/org/turbot-ops/workspace/stats/dashboard"
   //host = "http://localhost:9033"
   menu = <<EOT
 [Contributors](__HOST__/steampipe_stats.dashboard.Contributors)
