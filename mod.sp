@@ -4,8 +4,8 @@ mod "steampipe_stats" {
 }
 
 locals {
-  host = "https://cloud.steampipe.io/org/acme/workspace/jon/dashboard"
-  //host = "http://localhost:9194"
+  host = "https://pipes.turbot.com/org/turbot-ops/workspace/stats"
+  //host = "http://localhost:9033"
   menu = <<EOT
 [Contributors](__HOST__/steampipe_stats.dashboard.Contributors)
 🞄
@@ -13,13 +13,9 @@ locals {
 🞄
 [Links](__HOST__/steampipe_stats.dashboard.Links)
 🞄
-[Mentions](__HOST__/steampipe_stats.dashboard.Mentions)
-🞄
 [Mods](__HOST__/steampipe_stats.dashboard.Mods)
 🞄
 [News](__HOST__/steampipe_stats.dashboard.News)
-🞄
-[Reddit](__HOST__/steampipe_stats.dashboard.Reddit)
 🞄
 [Repos](__HOST__/steampipe_stats.dashboard.Repos)
 🞄

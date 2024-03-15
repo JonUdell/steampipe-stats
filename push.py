@@ -11,9 +11,9 @@ def connect():
   return conn.cursor()
 
 def push(sql):
-  url = 'https://cloud.steampipe.io/api/latest/org/acme/workspace/jon/query'
+  url = 'https://pipes.turbot.com/org/turbot-ops/workspace/stats/query'
   data = {'sql':sql}
-  token = os.environ['STEAMPIPE_CLOUD_TOKEN']
+  token = os.environ['PIPES_TOKEN']
   headers = {"Authorization": "Bearer " + token}
   r = requests.post(url, headers=headers, data=data)
   return r.text
