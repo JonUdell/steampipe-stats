@@ -21,8 +21,6 @@ locals {
 🞄
 [Slack](__HOST__/steampipe_stats.dashboard.Slack)
 🞄
-[SlackDay](__HOST__/steampipe_stats.dashboard.SlackDay)
-🞄
 [Stargazers](__HOST__/steampipe_stats.dashboard.Stargazers)
 🞄
 [Traffic](__HOST__/steampipe_stats.dashboard.Traffic)

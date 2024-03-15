@@ -40,6 +40,16 @@ dashboard "Stargazers" {
         select month, sum from github_stargazers_cumulative where repo = 'flowpipe' order by month
       EOQ
     }
+
+    chart {
+      width = 4
+      title = "powerpipe"
+      type = "line"
+      sql = <<EOQ
+        select month, sum from github_stargazers_cumulative where repo = 'powerpipe' order by month
+      EOQ
+    }
+
   }
 
   container {
@@ -190,6 +200,7 @@ dashboard "Stargazers" {
       EOQ
     }
 
+/*
     table {
       title = "New and cumulative stars by repo and month"
       width = 4
@@ -210,6 +221,7 @@ dashboard "Stargazers" {
           m.repo, m.month
       EOQ
     }
+*/    
 
 
   }
