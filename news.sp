@@ -61,7 +61,7 @@ dashboard "News" {
           article_month
       )
       select 
-        month,
+        date(month || '-01') as month,
         coalesce(count, 0) as count
       from 
         months 
