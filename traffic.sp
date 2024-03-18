@@ -42,21 +42,6 @@ dashboard "Traffic" {
   container {
 
     table {
-      title = "Unique views of GitHub repos by repo and day, last 2 weeks"
-      width = 5
-      sql = <<EOQ
-        select
-          *
-        from
-          github_traffic
-        where
-          uniques > 1
-        order by
-          uniques desc
-      EOQ
-    }
-
-    table {
       width = 4
       title = "Unique views of GitHub repos by repo, last 2 weeks"
       sql = <<EOQ
@@ -73,6 +58,20 @@ dashboard "Traffic" {
       EOQ
     }
 
+    table {
+      title = "Unique views of GitHub repos by repo and day, last 2 weeks"
+      width = 5
+      sql = <<EOQ
+        select
+          *
+        from
+          github_traffic
+        where
+          uniques > 1
+        order by
+          uniques desc
+      EOQ
+    }
 
   }
 
