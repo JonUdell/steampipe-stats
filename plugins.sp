@@ -4,6 +4,7 @@ dashboard "Plugins" {
     service = "Steampipe Stats"
   }
 
+
   container {
     
     text {
@@ -22,6 +23,7 @@ dashboard "Plugins" {
   }
 
   container {
+
 
     chart {
       series "turbot_plugins" {
@@ -75,6 +77,8 @@ dashboard "Plugins" {
           non_turbot_plugins using (month)
       EOQ
     }
+
+    text {  value = "using date of v0.0.1 tag as proxy for release date"  }
 
     table {
       width = 6
