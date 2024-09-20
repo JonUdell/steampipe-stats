@@ -1,30 +1,32 @@
-  dashboard "Repos" {
-    
-    tags = {
-      service = "Steampipe Stats"
+dashboard "Repos" {
+
+  tags = {
+    service = "Steampipe Stats"
+  }
+
+  container {
+
+    text {
+      width = 8
+      value = replace(
+        replace(
+          "${local.menu}",
+          "__HOST__",
+          "${local.host}"
+        ),
+        "[Repos](${local.host}/steampipe_stats.dashboard.Repos)",
+        "Repos"
+      )
     }
 
-    container {
-      
-      text {
-        width = 8
-        value = replace(
-          replace(
-            "${local.menu}",
-            "__HOST__",
-            "${local.host}"
-          ),
-          "[Repos](${local.host}/steampipe_stats.dashboard.Repos)",
-          "Repos"
-        )
-      }
+  }
 
-    }
+  container {
+    width = 4
 
     table {
-      width = 5
       title = "recent updates to community repos"
-      sql = <<EOQ
+      sql   = <<EOQ
         select
           name as "Repo",
           stargazer_count as "Stars",
@@ -45,17 +47,50 @@
         display = "none"
       }
     }
+  }
 
-    container {
+  container {
+    width = 4
+    title = "stars for published plugins"
+    sql   = <<EOQ
+        with repos as (
+          select 
+            date,
+            repository_full_name,
+            repository_full_name || ' in:name' as query
+          from
+            plugin_initial_versions
+          order by
+            date desc
+        ),
+        add_stars as (
+          select
+            r.*,
+            gsr.stargazer_count,
+            gsr.pushed_at
+          from
+            github_search_repository gsr
+          join
+            repos r
+          on
+            r.repository_full_name = gsr.name_with_owner
+          where
+            gsr.query = r.query
+        )
+        select
+          repository_full_name, date as published, to_char(pushed_at, 'YYYY-MM-DD') as pushed_at, stargazer_count
+        from
+          add_stars
+        order by stargazer_count desc        
+      EOQ
+  }
 
-      width = 7
+  container {
+    width = 4
 
-      container {
-
-        input "repo" {
-          width = 6
-          title = "community repo"
-          sql = <<EOQ
+    input "repo" {
+      title = "community repo"
+      sql   = <<EOQ
             select
               name_with_owner as label,
               name_with_owner as value
@@ -66,12 +101,11 @@
             order by
               name_with_owner
           EOQ
-        }
+    }
 
-        input "since" {
-            width = 3
-            title = "updated since"
-            sql = <<EOQ
+    input "since" {
+      title = "updated since"
+      sql   = <<EOQ
               with days(interval, day) as (
                 values 
                   ( '1 week', to_char(now() - interval '1 month', 'YYYY-MM-DD') ),
@@ -89,12 +123,11 @@
               order by 
                 day desc
             EOQ    
-        }
-      }
+    }
 
-      table {
-        args = [ self.input.repo, self.input.since ]
-        sql = <<EOQ
+    table {
+      args = [self.input.repo, self.input.since]
+      sql  = <<EOQ
           with repos as (
               select
                 --$1 as dollar_1,
@@ -126,15 +159,14 @@
           order by
             date desc      
         EOQ
-        column "repo_name" {
-          href = "https://github.com/{{.'repo_name'}}"
-        }
-        column "message" {
-          wrap = "all"
-        }        
+      column "repo_name" {
+        href = "https://github.com/{{.'repo_name'}}"
       }
-
+      column "message" {
+        wrap = "all"
+      }
     }
-    
- 
+
   }
+
+}
