@@ -36,7 +36,7 @@
           query = 'steampipe in:name -org:turbot -org:turbotio -org:turbothq created:>2021-01-21'
         order by
           pushed_at desc
-        limit 30
+        limit 90
       EOQ
       column "Repo" {
         href = "{{.URL}}"
