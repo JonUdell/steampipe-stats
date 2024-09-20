@@ -38,7 +38,7 @@ dashboard "Repos" {
           query = 'steampipe in:name -org:turbot -org:turbotio -org:turbothq created:>2021-01-21'
         order by
           pushed_at desc
-        limit 90
+        limit 120
       EOQ
       column "Repo" {
         href = "{{.URL}}"
@@ -50,9 +50,11 @@ dashboard "Repos" {
   }
 
   container {
-    width = 4
-    title = "stars for published plugins"
-    sql   = <<EOQ
+    width = 5
+
+    table {
+      title = "stars for published plugins"
+      sql = <<EOQ
         with repos as (
           select 
             date,
@@ -78,15 +80,19 @@ dashboard "Repos" {
             gsr.query = r.query
         )
         select
-          repository_full_name, date as published, to_char(pushed_at, 'YYYY-MM-DD') as pushed_at, stargazer_count
+          repository_full_name, 
+          stargazer_count,
+          date as published, 
+          to_char(pushed_at, 'YYYY-MM-DD') as pushed_at
         from
           add_stars
         order by stargazer_count desc        
       EOQ
+    }
   }
 
   container {
-    width = 4
+    width = 3
 
     input "repo" {
       title = "community repo"
